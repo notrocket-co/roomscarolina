@@ -1,0 +1,339 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    color: #718096;
+    font-weight: 400;
+}
+
+/* Main content */
+.main {
+    padding: 3rem 0;
+}
+
+.intro-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.intro-section h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    color: #4a5568;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #4a5568;
+    background: rgba(102, 126, 234, 0.1);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    transition: all 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.feature-icon {
+    font-size: 1.2rem;
+}
+
+/* Form section */
+.form-section {
+    margin-bottom: 3rem;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.form-header h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.form-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.embedded-form {
+    width: 100%;
+    height: 3539px;
+    border: none;
+    background: white;
+    display: block;
+}
+
+/* Info section */
+.info-section {
+    margin-bottom: 2rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-card h4 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.info-card ol,
+.info-card ul {
+    padding-left: 1.5rem;
+}
+
+.info-card li {
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+}
+
+/* Footer */
+.footer {
+    background: rgba(45, 55, 72, 0.95);
+    backdrop-filter: blur(10px);
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .intro-section h2 {
+        font-size: 2rem;
+    }
+    
+    .intro-text {
+        font-size: 1.1rem;
+    }
+    
+    .features {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .feature {
+        width: 100%;
+        justify-content: center;
+        max-width: 280px;
+    }
+    
+    .form-header {
+        padding: 1.5rem;
+    }
+    
+    .form-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .embedded-form {
+        height: 2800px; /* Shorter height for mobile */
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-card {
+        padding: 1.5rem;
+    }
+    
+    .main {
+        padding: 2rem 0;
+    }
+    
+    .intro-section {
+        padding: 2rem 1.5rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        padding: 1.5rem 0;
+    }
+    
+    .logo {
+        font-size: 1.8rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .intro-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .intro-text {
+        font-size: 1rem;
+    }
+    
+    .form-header {
+        padding: 1rem;
+    }
+    
+    .form-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .embedded-form {
+        height: 2600px; /* Even shorter for very small screens */
+    }
+}
+
+/* Loading and accessibility improvements */
+.embedded-form {
+    transition: opacity 0.3s ease;
+}
+
+.embedded-form:not([src]) {
+    background: #f7fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #718096;
+    font-size: 1.1rem;
+}
+
+/* Smooth animations */
+.info-card,
+.form-container,
+.intro-section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effects for better interactivity */
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}

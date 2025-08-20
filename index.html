@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms Carolina - Find Your Perfect Room</title>
+    <meta name="description" content="Find quality room rentals in Carolina. Fill out our application to get matched with available rooms.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">🏠 Rooms Carolina</h1>
+                <p class="tagline">Find Your Perfect Room</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="intro-section">
+                <h2>Looking for a Room to Rent?</h2>
+                <p class="intro-text">
+                    We connect quality tenants with available rooms in the Carolina area. 
+                    Fill out the quick form below to get started on finding your new home.
+                </p>
+            </section>
+
+            <section class="form-section">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h3>Carolinas Interest Form</h3>
+                        <p>Please fill out all fields to help us match you with the perfect room.</p>
+                    </div>
+                    <div class="form-wrapper">
+                        <iframe 
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSd0tHw_L3_RT97KzRdTbr43B8hs9q_i8CXRHKb1liT-DHI4_Q/viewform?embedded=true" 
+                            class="embedded-form"
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                            Loading form...
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Connecting tenants with quality housing.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Auto-resize iframe for better mobile experience
+        function resizeIframe() {
+            const iframe = document.querySelector('.embedded-form');
+            if (iframe && window.innerWidth < 768) {
+                iframe.style.height = '2800px'; // Adjusted for mobile
+            }
+        }
+
+        window.addEventListener('resize', resizeIframe);
+        window.addEventListener('load', resizeIframe);
+    </script>
+</body>
+</html>
