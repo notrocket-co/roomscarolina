@@ -638,10 +638,19 @@
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify(data),
-                        mode: 'cors'
+                        mode: 'cors',
+                        credentials: 'omit'
                     });
 
+                    console.log('Response status:', response.status);
+                    console.log('Response headers:', [...response.headers.entries()]);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
                     const result = await response.json();
+                    console.log('Response data:', result);
 
                     if (result.success) {
                         // Show success state
@@ -654,7 +663,11 @@
                     }
                     
                 } catch (error) {
-                    console.error('Submission error:', error);
+                    console.error('Submission error details:', {
+                        message: error.message,
+                        stack: error.stack,
+                        name: error.name
+                    });
                     
                     // Reset button state on error
                     submitBtn.disabled = false;
@@ -664,12 +677,16 @@
                     // Show user-friendly error message
                     let errorMessage = 'There was an error submitting your application. Please try again.';
                     
-                    if (error.message.includes('Failed to fetch')) {
+                    if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
                         errorMessage = 'Network error. Please check your internet connection and try again.';
+                        console.log('This is likely a CORS or network connectivity issue');
                     } else if (error.message.includes('CORS')) {
                         errorMessage = 'There was a technical issue. Please try refreshing the page and submitting again.';
+                    } else if (error.message.includes('HTTP error')) {
+                        errorMessage = 'Server error. Please try again in a few moments.';
                     }
                     
+                    console.log('Showing error to user:', errorMessage);
                     alert(errorMessage);
                 }
             });
