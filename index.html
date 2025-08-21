@@ -35,14 +35,343 @@
                         <p>Please fill out all fields to help us match you with the perfect room.</p>
                     </div>
                     <div class="form-wrapper">
-                        <iframe 
-                            src="https://docs.google.com/forms/d/e/1FAIpQLSd0tHw_L3_RT97KzRdTbr43B8hs9q_i8CXRHKb1liT-DHI4_Q/viewform?embedded=true" 
-                            class="embedded-form"
-                            frameborder="0" 
-                            marginheight="0" 
-                            marginwidth="0">
-                            Loading form...
-                        </iframe>
+                        <form id="roomForm" class="custom-form">
+                            <!-- Loading State -->
+                            <div id="formLoading" class="form-loading" style="display: none;">
+                                <div class="loading-spinner"></div>
+                                <p>Submitting your application...</p>
+                            </div>
+
+                            <!-- Success State -->
+                            <div id="formSuccess" class="form-success" style="display: none;">
+                                <div class="success-icon">✓</div>
+                                <h3>Thank You!</h3>
+                                <p>We'll reach out if we have something available that fits your needs!</p>
+                            </div>
+
+                            <!-- Form Fields -->
+                            <div id="formFields" class="form-fields">
+                                <!-- Areas of Interest -->
+                                <div class="form-group">
+                                    <label class="form-label required">Which areas are you most interested in? (select all that apply)</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="areas" value="Charlotte">
+                                            <span class="checkbox-custom"></span>
+                                            Charlotte
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="areas" value="Concord">
+                                            <span class="checkbox-custom"></span>
+                                            Concord
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="areas" value="Belmont">
+                                            <span class="checkbox-custom"></span>
+                                            Belmont
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="areas" value="Rock Hill">
+                                            <span class="checkbox-custom"></span>
+                                            Rock Hill
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="areas" value="Monroe">
+                                            <span class="checkbox-custom"></span>
+                                            Monroe
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="areas" value="Asheville">
+                                            <span class="checkbox-custom"></span>
+                                            Asheville
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="areas" value="Black Mountain">
+                                            <span class="checkbox-custom"></span>
+                                            Black Mountain
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="areas" value="other" id="otherAreaCheck">
+                                            <span class="checkbox-custom"></span>
+                                            Other:
+                                            <input type="text" name="otherArea" id="otherAreaText" placeholder="Specify area" class="other-input">
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="areasError"></div>
+                                </div>
+
+                                <!-- Full Name -->
+                                <div class="form-group">
+                                    <label for="fullName" class="form-label required">Full Name</label>
+                                    <input type="text" id="fullName" name="fullName" class="form-input" required>
+                                    <div class="error-message" id="fullNameError"></div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <label for="email" class="form-label required">Email</label>
+                                    <input type="email" id="email" name="email" class="form-input" required>
+                                    <div class="error-message" id="emailError"></div>
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="form-group">
+                                    <label for="phone" class="form-label required">Phone</label>
+                                    <input type="tel" id="phone" name="phone" class="form-input" required pattern="[0-9\-\(\)\s\+\.]{10,}">
+                                    <div class="error-message" id="phoneError"></div>
+                                </div>
+
+                                <!-- Where did you find this listing -->
+                                <div class="form-group">
+                                    <label class="form-label required">Where did you find this listing?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-item">
+                                            <input type="radio" name="foundListing" value="Facebook Marketplace" required>
+                                            <span class="radio-custom"></span>
+                                            Facebook Marketplace
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="foundListing" value="Roomies" required>
+                                            <span class="radio-custom"></span>
+                                            Roomies
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="foundListing" value="Zillow" required>
+                                            <span class="radio-custom"></span>
+                                            Zillow
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="foundListingError"></div>
+                                </div>
+
+                                <!-- Credit Score -->
+                                <div class="form-group">
+                                    <label for="creditScore" class="form-label required">What is your credit score?</label>
+                                    <input type="number" id="creditScore" name="creditScore" class="form-input" required min="300" max="850" placeholder="300-850 (enter 850 if no credit)">
+                                    <div class="form-hint">Please enter a number (300-850). If you don't have credit, enter 850.</div>
+                                    <div class="error-message" id="creditScoreError"></div>
+                                </div>
+
+                                <!-- Annual Income -->
+                                <div class="form-group">
+                                    <label for="annualIncome" class="form-label required">What is your combined ANNUAL income before taxes?</label>
+                                    <input type="number" id="annualIncome" name="annualIncome" class="form-input" required min="1" placeholder="e.g., 50000">
+                                    <div class="error-message" id="annualIncomeError"></div>
+                                </div>
+
+                                <!-- Months Planning to Live -->
+                                <div class="form-group">
+                                    <label for="monthsPlanned" class="form-label required">How many MONTHS would you plan on living in this home?</label>
+                                    <input type="number" id="monthsPlanned" name="monthsPlanned" class="form-input" required min="0" placeholder="e.g., 12">
+                                    <div class="error-message" id="monthsPlannedError"></div>
+                                </div>
+
+                                <!-- Number of People -->
+                                <div class="form-group">
+                                    <label class="form-label required">How many people will be living in your unit in total?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-item">
+                                            <input type="radio" name="numPeople" value="1" required>
+                                            <span class="radio-custom"></span>
+                                            1
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="numPeople" value="2" required>
+                                            <span class="radio-custom"></span>
+                                            2
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="numPeople" value="3" required>
+                                            <span class="radio-custom"></span>
+                                            3
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="numPeople" value="4" required>
+                                            <span class="radio-custom"></span>
+                                            4
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="numPeople" value="5" required>
+                                            <span class="radio-custom"></span>
+                                            5
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="numPeopleError"></div>
+                                </div>
+
+                                <!-- Pets -->
+                                <div class="form-group">
+                                    <label class="form-label required">Do you have pets?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-item">
+                                            <input type="radio" name="pets" value="Yes" required>
+                                            <span class="radio-custom"></span>
+                                            Yes
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="pets" value="No" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="petsError"></div>
+                                </div>
+
+                                <!-- Felonies -->
+                                <div class="form-group">
+                                    <label class="form-label required">How many felonies do you have?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-item">
+                                            <input type="radio" name="felonies" value="0" required>
+                                            <span class="radio-custom"></span>
+                                            0
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="felonies" value="1" required>
+                                            <span class="radio-custom"></span>
+                                            1
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="felonies" value="2" required>
+                                            <span class="radio-custom"></span>
+                                            2
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="felonies" value="3" required>
+                                            <span class="radio-custom"></span>
+                                            3
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="felonies" value="4" required>
+                                            <span class="radio-custom"></span>
+                                            4
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="felonies" value="5" required>
+                                            <span class="radio-custom"></span>
+                                            5
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="feloniesError"></div>
+                                </div>
+
+                                <!-- Evictions -->
+                                <div class="form-group">
+                                    <label class="form-label required">How many evictions have been filed upon you?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-item">
+                                            <input type="radio" name="evictions" value="0" required>
+                                            <span class="radio-custom"></span>
+                                            0
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="evictions" value="1" required>
+                                            <span class="radio-custom"></span>
+                                            1
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="evictions" value="2" required>
+                                            <span class="radio-custom"></span>
+                                            2
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="evictions" value="3" required>
+                                            <span class="radio-custom"></span>
+                                            3
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="evictions" value="4" required>
+                                            <span class="radio-custom"></span>
+                                            4
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="evictions" value="5" required>
+                                            <span class="radio-custom"></span>
+                                            5
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="evictionsError"></div>
+                                </div>
+
+                                <!-- Smoking -->
+                                <div class="form-group">
+                                    <label class="form-label required">Do you smoke cigarettes?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-item">
+                                            <input type="radio" name="smoking" value="Yes" required>
+                                            <span class="radio-custom"></span>
+                                            Yes
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="smoking" value="No" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="smoking" value="Outside Smoking Only" required>
+                                            <span class="radio-custom"></span>
+                                            Outside Smoking Only
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="smokingError"></div>
+                                </div>
+
+                                <!-- Furnished -->
+                                <div class="form-group">
+                                    <label class="form-label required">Would you rather the bedroom be furnished or unfurnished?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-item">
+                                            <input type="radio" name="furnished" value="I have my own bedroom furnishings or will buy them." required>
+                                            <span class="radio-custom"></span>
+                                            I have my own bedroom furnishings or will buy them.
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="furnished" value="I need bedroom furnishings to be provided for me (bed, dresser, desk)." required>
+                                            <span class="radio-custom"></span>
+                                            I need bedroom furnishings to be provided for me (bed, dresser, desk).
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="furnishedError"></div>
+                                </div>
+
+                                <!-- Move-in Date -->
+                                <div class="form-group">
+                                    <label for="moveInDate" class="form-label required">When would you like to move in?</label>
+                                    <input type="date" id="moveInDate" name="moveInDate" class="form-input" required>
+                                    <div class="error-message" id="moveInDateError"></div>
+                                </div>
+
+                                <!-- Share Info -->
+                                <div class="form-group">
+                                    <label class="form-label required">
+                                        <strong>Sometimes all our rooms get snapped up.</strong><br>
+                                        If that happens, is it cool if we share your info with another awesome manager who might have what you're looking for?
+                                    </label>
+                                    <div class="radio-group">
+                                        <label class="radio-item">
+                                            <input type="radio" name="shareInfo" value="Yes, I'm open to finding something awesome" required>
+                                            <span class="radio-custom"></span>
+                                            Yes, I'm open to finding something awesome
+                                        </label>
+                                        <label class="radio-item">
+                                            <input type="radio" name="shareInfo" value="No, just tell me if you have something yourself" required>
+                                            <span class="radio-custom"></span>
+                                            No, just tell me if you have something yourself
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="shareInfoError"></div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="form-submit">
+                                    <button type="submit" class="submit-btn">
+                                        <span class="submit-text">Submit Application</span>
+                                        <div class="submit-spinner" style="display: none;"></div>
+                                    </button>
+                                    <p class="required-note">* Required fields</p>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </section>
@@ -56,26 +385,289 @@
     </footer>
 
     <script>
-        // Smooth scrolling for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('roomForm');
+            
+            // Only proceed if the form exists (i.e., we're using the custom form)
+            if (!form) return;
+            
+            const formFields = document.getElementById('formFields');
+            const formLoading = document.getElementById('formLoading');
+            const formSuccess = document.getElementById('formSuccess');
+            const submitBtn = form.querySelector('.submit-btn');
+            const submitText = submitBtn.querySelector('.submit-text');
+            const submitSpinner = submitBtn.querySelector('.submit-spinner');
+
+            // Other area functionality
+            const otherAreaCheck = document.getElementById('otherAreaCheck');
+            const otherAreaText = document.getElementById('otherAreaText');
+
+            otherAreaCheck.addEventListener('change', function() {
+                if (this.checked) {
+                    otherAreaText.style.display = 'inline-block';
+                    otherAreaText.focus();
+                    otherAreaText.required = true;
+                } else {
+                    otherAreaText.style.display = 'none';
+                    otherAreaText.value = '';
+                    otherAreaText.required = false;
+                }
+            });
+
+            // Hide other area input initially
+            otherAreaText.style.display = 'none';
+
+            // Form validation functions
+            function validateField(field, errorId, customMessage = null) {
+                const errorElement = document.getElementById(errorId);
+                let isValid = true;
+                let message = '';
+
+                if (field.type === 'checkbox' && field.name === 'areas') {
+                    // Validate at least one area is selected
+                    const checkedAreas = document.querySelectorAll('input[name="areas"]:checked');
+                    if (checkedAreas.length === 0) {
+                        isValid = false;
+                        message = 'Please select at least one area of interest.';
+                    } else if (otherAreaCheck.checked && !otherAreaText.value.trim()) {
+                        isValid = false;
+                        message = 'Please specify the other area.';
+                    }
+                } else if (field.type === 'email') {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        message = 'Email is required.';
+                    } else if (!emailPattern.test(field.value)) {
+                        isValid = false;
+                        message = 'Please enter a valid email address.';
+                    }
+                } else if (field.type === 'tel') {
+                    const phonePattern = /^[\+]?[1-9][\d]{0,15}$/;
+                    const cleanedPhone = field.value.replace(/[\s\-\(\)\.]/g, '');
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        message = 'Phone number is required.';
+                    } else if (cleanedPhone.length < 10) {
+                        isValid = false;
+                        message = 'Please enter a valid phone number.';
+                    }
+                } else if (field.type === 'number') {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        message = 'This field is required.';
+                    } else {
+                        const value = parseInt(field.value);
+                        if (field.name === 'creditScore') {
+                            if (value < 300 || value > 850) {
+                                isValid = false;
+                                message = 'Credit score must be between 300 and 850.';
+                            }
+                        } else if (field.name === 'annualIncome') {
+                            if (value < 1) {
+                                isValid = false;
+                                message = 'Please enter a valid annual income.';
+                            }
+                        } else if (field.name === 'monthsPlanned') {
+                            if (value < 0) {
+                                isValid = false;
+                                message = 'Please enter a valid number of months.';
+                            }
+                        }
+                    }
+                } else if (field.type === 'date') {
+                    if (!field.value) {
+                        isValid = false;
+                        message = 'Please select a move-in date.';
+                    } else {
+                        const selectedDate = new Date(field.value);
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        if (selectedDate < today) {
+                            isValid = false;
+                            message = 'Move-in date cannot be in the past.';
+                        }
+                    }
+                } else if (field.type === 'radio') {
+                    const radioGroup = document.querySelectorAll(`input[name="${field.name}"]`);
+                    const checkedRadio = Array.from(radioGroup).find(radio => radio.checked);
+                    if (!checkedRadio) {
+                        isValid = false;
+                        message = 'Please select an option.';
+                    }
+                } else if (field.required && !field.value.trim()) {
+                    isValid = false;
+                    message = 'This field is required.';
+                }
+
+                if (customMessage) {
+                    message = customMessage;
+                }
+
+                if (errorElement) {
+                    if (isValid) {
+                        errorElement.classList.remove('show');
+                        errorElement.textContent = '';
+                    } else {
+                        errorElement.classList.add('show');
+                        errorElement.textContent = message;
+                    }
+                }
+
+                return isValid;
+            }
+
+            // Real-time validation
+            form.addEventListener('input', function(e) {
+                const field = e.target;
+                const errorMapping = {
+                    'fullName': 'fullNameError',
+                    'email': 'emailError',
+                    'phone': 'phoneError',
+                    'creditScore': 'creditScoreError',
+                    'annualIncome': 'annualIncomeError',
+                    'monthsPlanned': 'monthsPlannedError',
+                    'moveInDate': 'moveInDateError'
+                };
+
+                if (errorMapping[field.name]) {
+                    validateField(field, errorMapping[field.name]);
+                }
+            });
+
+            // Radio and checkbox validation
+            form.addEventListener('change', function(e) {
+                const field = e.target;
+                const radioErrorMapping = {
+                    'foundListing': 'foundListingError',
+                    'numPeople': 'numPeopleError',
+                    'pets': 'petsError',
+                    'felonies': 'feloniesError',
+                    'evictions': 'evictionsError',
+                    'smoking': 'smokingError',
+                    'furnished': 'furnishedError',
+                    'shareInfo': 'shareInfoError'
+                };
+
+                if (radioErrorMapping[field.name]) {
+                    validateField(field, radioErrorMapping[field.name]);
+                }
+
+                if (field.name === 'areas') {
+                    validateField(field, 'areasError');
+                }
+            });
+
+            // Form submission
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Validate all fields
+                let isFormValid = true;
+                const validations = [
+                    { field: document.querySelector('input[name="areas"]'), error: 'areasError' },
+                    { field: document.getElementById('fullName'), error: 'fullNameError' },
+                    { field: document.getElementById('email'), error: 'emailError' },
+                    { field: document.getElementById('phone'), error: 'phoneError' },
+                    { field: document.querySelector('input[name="foundListing"]'), error: 'foundListingError' },
+                    { field: document.getElementById('creditScore'), error: 'creditScoreError' },
+                    { field: document.getElementById('annualIncome'), error: 'annualIncomeError' },
+                    { field: document.getElementById('monthsPlanned'), error: 'monthsPlannedError' },
+                    { field: document.querySelector('input[name="numPeople"]'), error: 'numPeopleError' },
+                    { field: document.querySelector('input[name="pets"]'), error: 'petsError' },
+                    { field: document.querySelector('input[name="felonies"]'), error: 'feloniesError' },
+                    { field: document.querySelector('input[name="evictions"]'), error: 'evictionsError' },
+                    { field: document.querySelector('input[name="smoking"]'), error: 'smokingError' },
+                    { field: document.querySelector('input[name="furnished"]'), error: 'furnishedError' },
+                    { field: document.getElementById('moveInDate'), error: 'moveInDateError' },
+                    { field: document.querySelector('input[name="shareInfo"]'), error: 'shareInfoError' }
+                ];
+
+                validations.forEach(validation => {
+                    if (!validateField(validation.field, validation.error)) {
+                        isFormValid = false;
+                    }
+                });
+
+                if (!isFormValid) {
+                    // Scroll to first error
+                    const firstError = document.querySelector('.error-message.show');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+
+                // Show loading state
+                submitBtn.disabled = true;
+                submitText.style.display = 'none';
+                submitSpinner.style.display = 'block';
+
+                // Collect form data
+                const formData = new FormData(form);
+                const data = {};
+
+                // Handle areas (multiple checkboxes)
+                const selectedAreas = [];
+                document.querySelectorAll('input[name="areas"]:checked').forEach(checkbox => {
+                    if (checkbox.value === 'other' && otherAreaText.value.trim()) {
+                        selectedAreas.push(otherAreaText.value.trim());
+                    } else if (checkbox.value !== 'other') {
+                        selectedAreas.push(checkbox.value);
+                    }
+                });
+                data.areas = selectedAreas;
+
+                // Handle other form fields
+                for (let [key, value] of formData.entries()) {
+                    if (key !== 'areas' && key !== 'otherArea') {
+                        data[key] = value;
+                    }
+                }
+
+                try {
+                    // You can replace this with your actual Google Apps Script URL
+                    // For now, we'll simulate a successful submission
+                    console.log('Form data to be submitted:', data);
+                    
+                    // Simulate API call delay
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    // Show success state
+                    formFields.style.display = 'none';
+                    formSuccess.style.display = 'block';
+                    
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    
+                    // Reset button state on error
+                    submitBtn.disabled = false;
+                    submitText.style.display = 'block';
+                    submitSpinner.style.display = 'none';
+                    
+                    alert('There was an error submitting your form. Please try again.');
+                }
+            });
+
+            // Set minimum date to today
+            const moveInDate = document.getElementById('moveInDate');
+            const today = new Date().toISOString().split('T')[0];
+            moveInDate.setAttribute('min', today);
+        });
+
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
-
-        // Auto-resize iframe for better mobile experience
-        function resizeIframe() {
-            const iframe = document.querySelector('.embedded-form');
-            if (iframe && window.innerWidth < 768) {
-                iframe.style.height = '2800px'; // Adjusted for mobile
-            }
-        }
-
-        window.addEventListener('resize', resizeIframe);
-        window.addEventListener('load', resizeIframe);
     </script>
 </body>
 </html>
