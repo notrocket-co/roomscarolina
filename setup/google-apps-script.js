@@ -20,8 +20,17 @@ const SHEET_NAME = 'Form Submissions'; // Name of the sheet tab
  */
 function doPost(e) {
   try {
-    // Parse the form data
-    const data = JSON.parse(e.postData.contents);
+    // Parse the form data from FormData
+    let data;
+    if (e.postData && e.postData.contents) {
+      // If it's JSON data
+      data = JSON.parse(e.postData.contents);
+    } else if (e.parameter && e.parameter.data) {
+      // If it's FormData with 'data' parameter
+      data = JSON.parse(e.parameter.data);
+    } else {
+      throw new Error('No data received');
+    }
     
     // Log the submission for debugging
     console.log('Received form submission:', data);
