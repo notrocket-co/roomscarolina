@@ -1,0 +1,23 @@
+# Documentation and setup files (keep private)
+docs/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Any config files with sensitive data
+config.js
+secrets.js
