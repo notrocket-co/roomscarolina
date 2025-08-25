@@ -123,24 +123,13 @@
 
                                 <!-- Where did you find this listing -->
                                 <div class="form-group">
-                                    <label class="form-label required">Where did you find this listing?</label>
-                                    <div class="radio-group">
-                                        <label class="radio-item">
-                                            <input type="radio" name="foundListing" value="Facebook Marketplace" required>
-                                            <span class="radio-custom"></span>
-                                            Facebook Marketplace
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="foundListing" value="Roomies" required>
-                                            <span class="radio-custom"></span>
-                                            Roomies
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="foundListing" value="Zillow" required>
-                                            <span class="radio-custom"></span>
-                                            Zillow
-                                        </label>
-                                    </div>
+                                    <label for="foundListing" class="form-label required">Where did you find this listing?</label>
+                                    <select id="foundListing" name="foundListing" class="form-input" required>
+                                        <option value="" disabled selected>Select an option</option>
+                                        <option>Facebook Marketplace</option>
+                                        <option>Roomies</option>
+                                        <option>Zillow</option>
+                                    </select>
                                     <div class="error-message" id="foundListingError"></div>
                                 </div>
 
@@ -154,48 +143,22 @@
 
                                 <!-- Annual Income -->
                                 <div class="form-group">
-                                    <label for="annualIncome" class="form-label required">What is your combined ANNUAL income before taxes?</label>
+                                    <label for="annualIncome" class="form-label required">What is your income (annual)?</label>
                                     <input type="number" id="annualIncome" name="annualIncome" class="form-input" required min="1" placeholder="e.g., 50000">
                                     <div class="error-message" id="annualIncomeError"></div>
                                 </div>
 
                                 <!-- Months Planning to Live -->
                                 <div class="form-group">
-                                    <label for="monthsPlanned" class="form-label required">How many MONTHS would you plan on living in this home?</label>
+                                    <label for="monthsPlanned" class="form-label required">How many months would you stay?</label>
                                     <input type="number" id="monthsPlanned" name="monthsPlanned" class="form-input" required min="0" placeholder="e.g., 12">
                                     <div class="error-message" id="monthsPlannedError"></div>
                                 </div>
 
                                 <!-- Number of People -->
                                 <div class="form-group">
-                                    <label class="form-label required">How many people will be living in your unit in total?</label>
-                                    <div class="radio-group">
-                                        <label class="radio-item">
-                                            <input type="radio" name="numPeople" value="1" required>
-                                            <span class="radio-custom"></span>
-                                            1
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="numPeople" value="2" required>
-                                            <span class="radio-custom"></span>
-                                            2
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="numPeople" value="3" required>
-                                            <span class="radio-custom"></span>
-                                            3
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="numPeople" value="4" required>
-                                            <span class="radio-custom"></span>
-                                            4
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="numPeople" value="5" required>
-                                            <span class="radio-custom"></span>
-                                            5
-                                        </label>
-                                    </div>
+                                    <label for="numPeople" class="form-label required">How many people will be living in your room?</label>
+                                    <input type="number" id="numPeople" name="numPeople" class="form-input" required min="1" placeholder="e.g., 1">
                                     <div class="error-message" id="numPeopleError"></div>
                                 </div>
 
@@ -219,77 +182,15 @@
 
                                 <!-- Felonies -->
                                 <div class="form-group">
-                                    <label class="form-label required">How many felonies do you have?</label>
-                                    <div class="radio-group">
-                                        <label class="radio-item">
-                                            <input type="radio" name="felonies" value="0" required>
-                                            <span class="radio-custom"></span>
-                                            0
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="felonies" value="1" required>
-                                            <span class="radio-custom"></span>
-                                            1
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="felonies" value="2" required>
-                                            <span class="radio-custom"></span>
-                                            2
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="felonies" value="3" required>
-                                            <span class="radio-custom"></span>
-                                            3
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="felonies" value="4" required>
-                                            <span class="radio-custom"></span>
-                                            4
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="felonies" value="5" required>
-                                            <span class="radio-custom"></span>
-                                            5
-                                        </label>
-                                    </div>
+                                    <label for="felonies" class="form-label required">How many felonies do you have?</label>
+                                    <input type="number" id="felonies" name="felonies" class="form-input" required min="0" placeholder="e.g., 0">
                                     <div class="error-message" id="feloniesError"></div>
                                 </div>
 
                                 <!-- Evictions -->
                                 <div class="form-group">
-                                    <label class="form-label required">How many evictions have been filed upon you?</label>
-                                    <div class="radio-group">
-                                        <label class="radio-item">
-                                            <input type="radio" name="evictions" value="0" required>
-                                            <span class="radio-custom"></span>
-                                            0
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="evictions" value="1" required>
-                                            <span class="radio-custom"></span>
-                                            1
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="evictions" value="2" required>
-                                            <span class="radio-custom"></span>
-                                            2
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="evictions" value="3" required>
-                                            <span class="radio-custom"></span>
-                                            3
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="evictions" value="4" required>
-                                            <span class="radio-custom"></span>
-                                            4
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="evictions" value="5" required>
-                                            <span class="radio-custom"></span>
-                                            5
-                                        </label>
-                                    </div>
+                                    <label for="evictions" class="form-label required">How many evictions have you had?</label>
+                                    <input type="number" id="evictions" name="evictions" class="form-input" required min="0" placeholder="e.g., 0">
                                     <div class="error-message" id="evictionsError"></div>
                                 </div>
 
@@ -513,7 +414,10 @@
                     'creditScore': 'creditScoreError',
                     'annualIncome': 'annualIncomeError',
                     'monthsPlanned': 'monthsPlannedError',
-                    'moveInDate': 'moveInDateError'
+                    'moveInDate': 'moveInDateError',
+                    'numPeople': 'numPeopleError',
+                    'felonies': 'feloniesError',
+                    'evictions': 'evictionsError'
                 };
 
                 if (errorMapping[field.name]) {
@@ -521,21 +425,22 @@
                 }
             });
 
-            // Radio and checkbox validation
+            // Radio/checkbox/select validation
             form.addEventListener('change', function(e) {
                 const field = e.target;
                 const radioErrorMapping = {
-                    'foundListing': 'foundListingError',
-                    'numPeople': 'numPeopleError',
                     'pets': 'petsError',
-                    'felonies': 'feloniesError',
-                    'evictions': 'evictionsError',
                     'smoking': 'smokingError',
                     'furnished': 'furnishedError'
                 };
 
                 if (radioErrorMapping[field.name]) {
                     validateField(field, radioErrorMapping[field.name]);
+                }
+
+                // Validate select for foundListing
+                if (field.id === 'foundListing') {
+                    validateField(field, 'foundListingError');
                 }
 
                 if (field.name === 'areas') {
@@ -554,14 +459,14 @@
                     { field: document.getElementById('fullName'), error: 'fullNameError' },
                     { field: document.getElementById('email'), error: 'emailError' },
                     { field: document.getElementById('phone'), error: 'phoneError' },
-                    { field: document.querySelector('input[name="foundListing"]'), error: 'foundListingError' },
+                    { field: document.getElementById('foundListing'), error: 'foundListingError' },
                     { field: document.getElementById('creditScore'), error: 'creditScoreError' },
                     { field: document.getElementById('annualIncome'), error: 'annualIncomeError' },
                     { field: document.getElementById('monthsPlanned'), error: 'monthsPlannedError' },
-                    { field: document.querySelector('input[name="numPeople"]'), error: 'numPeopleError' },
+                    { field: document.getElementById('numPeople'), error: 'numPeopleError' },
                     { field: document.querySelector('input[name="pets"]'), error: 'petsError' },
-                    { field: document.querySelector('input[name="felonies"]'), error: 'feloniesError' },
-                    { field: document.querySelector('input[name="evictions"]'), error: 'evictionsError' },
+                    { field: document.getElementById('felonies'), error: 'feloniesError' },
+                    { field: document.getElementById('evictions'), error: 'evictionsError' },
                     { field: document.querySelector('input[name="smoking"]'), error: 'smokingError' },
                     { field: document.querySelector('input[name="furnished"]'), error: 'furnishedError' },
                     { field: document.getElementById('moveInDate'), error: 'moveInDateError' }
