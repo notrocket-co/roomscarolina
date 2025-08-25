@@ -348,9 +348,10 @@ body {
 }
 
 .submit-btn {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    /* High-contrast solid style for reliability across browsers */
+    background-color: #2563eb; /* blue-600 */
     color: #ffffff;
-    border: none;
+    border: 2px solid #1e40af; /* blue-800 */
     padding: 16px 48px;
     font-size: 1.1rem;
     font-weight: 600;
@@ -366,8 +367,10 @@ body {
 }
 
 .submit-btn:hover {
+    background-color: #1d4ed8; /* blue-700 */
+    border-color: #1e40af; /* blue-800 */
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 10px 25px rgba(29, 78, 216, 0.35);
 }
 
 .submit-btn:focus-visible {
@@ -376,7 +379,10 @@ body {
 }
 
 .submit-btn:disabled {
-    opacity: 0.7;
+    background-color: #9ca3af; /* gray-400 */
+    border-color: #6b7280; /* gray-500 */
+    color: #ffffff;
+    opacity: 1;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
