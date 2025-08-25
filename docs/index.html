@@ -133,33 +133,26 @@
                                     <div class="error-message" id="foundListingError"></div>
                                 </div>
 
+                                <!-- Number of People -->
+                                <div class="form-group">
+                                    <label for="numPeople" class="form-label required">How many people will be living in your room?</label>
+                                    <input type="number" id="numPeople" name="numPeople" class="form-input" required min="1" placeholder="e.g., 1">
+                                    <div class="error-message" id="numPeopleError"></div>
+                                </div>
+
+                                <!-- Felonies -->
+                                <div class="form-group">
+                                    <label for="felonies" class="form-label required">How many felonies do you have?</label>
+                                    <input type="number" id="felonies" name="felonies" class="form-input" required min="0" placeholder="e.g., 0">
+                                    <div class="error-message" id="feloniesError"></div>
+                                </div>
+
                                 <!-- Credit Score -->
                                 <div class="form-group">
                                     <label for="creditScore" class="form-label required">What is your credit score?</label>
                                     <input type="number" id="creditScore" name="creditScore" class="form-input" required min="300" max="850" placeholder="300-850 (enter 850 if no credit)">
                                     <div class="form-hint">Please enter a number (300-850). If you don't have credit, enter 850.</div>
                                     <div class="error-message" id="creditScoreError"></div>
-                                </div>
-
-                                <!-- Annual Income -->
-                                <div class="form-group">
-                                    <label for="annualIncome" class="form-label required">What is your income (annual)?</label>
-                                    <input type="number" id="annualIncome" name="annualIncome" class="form-input" required min="1" placeholder="e.g., 50000">
-                                    <div class="error-message" id="annualIncomeError"></div>
-                                </div>
-
-                                <!-- Months Planning to Live -->
-                                <div class="form-group">
-                                    <label for="monthsPlanned" class="form-label required">How many months would you stay?</label>
-                                    <input type="number" id="monthsPlanned" name="monthsPlanned" class="form-input" required min="0" placeholder="e.g., 12">
-                                    <div class="error-message" id="monthsPlannedError"></div>
-                                </div>
-
-                                <!-- Number of People -->
-                                <div class="form-group">
-                                    <label for="numPeople" class="form-label required">How many people will be living in your room?</label>
-                                    <input type="number" id="numPeople" name="numPeople" class="form-input" required min="1" placeholder="e.g., 1">
-                                    <div class="error-message" id="numPeopleError"></div>
                                 </div>
 
                                 <!-- Pets -->
@@ -178,20 +171,6 @@
                                         </label>
                                     </div>
                                     <div class="error-message" id="petsError"></div>
-                                </div>
-
-                                <!-- Felonies -->
-                                <div class="form-group">
-                                    <label for="felonies" class="form-label required">How many felonies do you have?</label>
-                                    <input type="number" id="felonies" name="felonies" class="form-input" required min="0" placeholder="e.g., 0">
-                                    <div class="error-message" id="feloniesError"></div>
-                                </div>
-
-                                <!-- Evictions -->
-                                <div class="form-group">
-                                    <label for="evictions" class="form-label required">How many evictions have you had?</label>
-                                    <input type="number" id="evictions" name="evictions" class="form-input" required min="0" placeholder="e.g., 0">
-                                    <div class="error-message" id="evictionsError"></div>
                                 </div>
 
                                 <!-- Smoking -->
@@ -215,6 +194,27 @@
                                         </label>
                                     </div>
                                     <div class="error-message" id="smokingError"></div>
+                                </div>
+
+                                <!-- Annual Income -->
+                                <div class="form-group">
+                                    <label for="annualIncome" class="form-label required">What is your income (annual)?</label>
+                                    <input type="number" id="annualIncome" name="annualIncome" class="form-input" required min="1" placeholder="e.g., 50000">
+                                    <div class="error-message" id="annualIncomeError"></div>
+                                </div>
+
+                                <!-- Evictions -->
+                                <div class="form-group">
+                                    <label for="evictions" class="form-label required">How many evictions have you had?</label>
+                                    <input type="number" id="evictions" name="evictions" class="form-input" required min="0" placeholder="e.g., 0">
+                                    <div class="error-message" id="evictionsError"></div>
+                                </div>
+
+                                <!-- Months Planning to Live -->
+                                <div class="form-group">
+                                    <label for="monthsPlanned" class="form-label required">How many months would you stay?</label>
+                                    <input type="number" id="monthsPlanned" name="monthsPlanned" class="form-input" required min="0" placeholder="e.g., 12">
+                                    <div class="error-message" id="monthsPlannedError"></div>
                                 </div>
 
                                 <!-- Furnished -->
@@ -252,7 +252,7 @@
                                 <!-- Submit Button -->
                                 <div class="form-submit">
                                     <button type="submit" class="submit-btn">
-                                        <span class="submit-text">Submit Application</span>
+                                        <span class="submit-text">Submit</span>
                                         <div class="submit-spinner" style="display: none;"></div>
                                     </button>
                                     <p class="required-note">* Required fields</p>
