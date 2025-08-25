@@ -615,34 +615,21 @@
                 try {
                     console.log('Submitting form data:', data);
 
-                    // Submit to Google Apps Script using FormData to avoid CORS preflight
-                    const formData = new FormData();
-                    formData.append('data', JSON.stringify(data));
+                    // Submit using no-cors so the browser doesn't block the response
+                    const fd = new FormData();
+                    fd.append('data', JSON.stringify(data));
 
-                    const response = await fetch('https://script.google.com/macros/s/AKfycbxPjD_kaUDbK3_n4mK8DIQEMuBsi1AZBh-iWY5z4SejpVsqvbOeSi0L_WQC6XhNVSty/exec', {
+                    await fetch('https://script.google.com/macros/s/AKfycbxPjD_kaUDbK3_n4mK8DIQEMuBsi1AZBh-iWY5z4SejpVsqvbOeSi0L_WQC6XhNVSty/exec', {
                         method: 'POST',
-                        body: formData,
-                        mode: 'cors'
+                        body: fd,
+                        mode: 'no-cors'
                     });
 
-                    console.log('Response status:', response.status);
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-
-                    const result = await response.json();
-                    console.log('Response data:', result);
-
-                    if (result.success) {
-                        // Show success state
-                        formFields.style.display = 'none';
-                        formSuccess.style.display = 'block';
-                        
-                        console.log('Form submitted successfully:', result);
-                    } else {
-                        throw new Error(result.message || 'Submission failed');
-                    }
+                    // We cannot read the response in no-cors mode, but the request was sent.
+                    // Show success state optimistically (submission already reaches the Sheet).
+                    formFields.style.display = 'none';
+                    formSuccess.style.display = 'block';
+                    console.log('Form submitted (no-cors); response not readable due to CORS.');
                     
                 } catch (error) {
                     console.error('Submission error details:', {
