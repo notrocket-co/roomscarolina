@@ -20,16 +20,19 @@ const SHEET_NAME = 'Form Submissions'; // Name of the sheet tab
  */
 function doPost(e) {
   try {
-    // Parse the form data from FormData
+    // Parse the form data: prefer FormData param first (avoids CORS preflight), then JSON
     let data;
-    if (e.postData && e.postData.contents) {
-      // If it's JSON data
-      data = JSON.parse(e.postData.contents);
-    } else if (e.parameter && e.parameter.data) {
-      // If it's FormData with 'data' parameter
+    if (e && e.parameter && e.parameter.data) {
+      // FormData with 'data' parameter (stringified JSON)
       data = JSON.parse(e.parameter.data);
+    } else if (
+      e && e.postData && e.postData.contents && e.postData.type &&
+      String(e.postData.type).indexOf('application/json') !== -1
+    ) {
+      // Raw JSON payload
+      data = JSON.parse(e.postData.contents);
     } else {
-      throw new Error('No data received');
+      throw new Error('No parsable data received');
     }
     
     // Log the submission for debugging
@@ -116,22 +119,24 @@ function saveToSheet(data) {
     // If sheet doesn't exist, create it with headers
     if (!sheet) {
       const newSheet = SpreadsheetApp.openById(SHEET_ID).insertSheet(SHEET_NAME);
+      // Headers aligned with original Google Form structure
       const headers = [
         'Timestamp',
-        'Areas of Interest',
-        'Name',
+        'Which areas are you most interested in? (select all that apply)',
+        'Full Name',
         'Email',
         'Phone',
-        'Date of Birth',
-        'Desired Move-in Date',
-        'Monthly Income',
-        'Credit Score',
-        'Co-signer Available',
-        'Pets',
-        'Felonies',
-        'Evictions',
-        'Smoking',
-        'Additional Info'
+        'Where did you find this listing?',
+        'What is your credit score?',
+        'What is your combined ANNUAL income before taxes?',
+        'How many MONTHS would you plan on living in this home?',
+        'How many people will be living in your unit in total?',
+        'Do you have pets?',
+        'How many felonies do you have?',
+        'How many evictions have been filed upon you?',
+        'Do you smoke cigarettes?',
+        'Would you rather the bedroom be furnished or unfurnished?',
+        'When would you like to move in?'
       ];
       newSheet.getRange(1, 1, 1, headers.length).setValues([headers]);
       newSheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
@@ -142,20 +147,21 @@ function saveToSheet(data) {
     // Prepare row data
     const rowData = [
       new Date().toLocaleString(), // Timestamp
-      Array.isArray(data.areas) ? data.areas.join(', ') : data.areas || '', // Areas
-      data.name || '',
+      Array.isArray(data.areas) ? data.areas.join(', ') : (data.areas || ''), // Areas
+      data.fullName || '',
       data.email || '',
       data.phone || '',
-      data.dob || '',
-      data.moveInDate || '',
-      data.income || '',
+      data.foundListing || '',
       data.creditScore || '',
-      data.cosigner || '',
+      data.annualIncome || '',
+      data.monthsPlanned || '',
+      data.numPeople || '',
       data.pets || '',
       data.felonies || '',
       data.evictions || '',
       data.smoking || '',
-      data.additionalInfo || ''
+      data.furnished || '',
+      data.moveInDate || ''
     ];
     
     // Add row to sheet

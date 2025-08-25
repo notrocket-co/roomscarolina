@@ -341,25 +341,11 @@
                                     <div class="error-message" id="moveInDateError"></div>
                                 </div>
 
-                                <!-- Share Info -->
+                                <!-- Disclaimer -->
                                 <div class="form-group">
-                                    <label class="form-label required">
-                                        <strong>Sometimes all our rooms get snapped up.</strong><br>
-                                        If that happens, is it cool if we share your info with another awesome manager who might have what you're looking for?
-                                    </label>
-                                    <div class="radio-group">
-                                        <label class="radio-item">
-                                            <input type="radio" name="shareInfo" value="Yes, I'm open to finding something awesome" required>
-                                            <span class="radio-custom"></span>
-                                            Yes, I'm open to finding something awesome
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="shareInfo" value="No, just tell me if you have something yourself" required>
-                                            <span class="radio-custom"></span>
-                                            No, just tell me if you have something yourself
-                                        </label>
-                                    </div>
-                                    <div class="error-message" id="shareInfoError"></div>
+                                    <p class="form-disclaimer">
+                                        Your information may be shared with third-party housing providers if we don’t have a room available. In some cases, we may receive compensation from those providers if you end up renting with them. We do not sell your information to unrelated third parties.
+                                    </p>
                                 </div>
 
                                 <!-- Submit Button -->
@@ -545,8 +531,7 @@
                     'felonies': 'feloniesError',
                     'evictions': 'evictionsError',
                     'smoking': 'smokingError',
-                    'furnished': 'furnishedError',
-                    'shareInfo': 'shareInfoError'
+                    'furnished': 'furnishedError'
                 };
 
                 if (radioErrorMapping[field.name]) {
@@ -579,8 +564,7 @@
                     { field: document.querySelector('input[name="evictions"]'), error: 'evictionsError' },
                     { field: document.querySelector('input[name="smoking"]'), error: 'smokingError' },
                     { field: document.querySelector('input[name="furnished"]'), error: 'furnishedError' },
-                    { field: document.getElementById('moveInDate'), error: 'moveInDateError' },
-                    { field: document.querySelector('input[name="shareInfo"]'), error: 'shareInfoError' }
+                    { field: document.getElementById('moveInDate'), error: 'moveInDateError' }
                 ];
 
                 validations.forEach(validation => {
