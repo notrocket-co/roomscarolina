@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rooms Carolina - Find Your Perfect Room</title>
     <meta name="description" content="Find quality room rentals in Carolina. Fill out our application to get matched with available rooms.">
-    <link rel="stylesheet" href="styles.css?v=2025-08-25-1">
+    <link rel="stylesheet" href="styles.css?v=2025-09-03-1">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -89,12 +89,6 @@
                                             <input type="checkbox" name="areas" value="Black Mountain">
                                             <span class="checkbox-custom"></span>
                                             Black Mountain
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="areas" value="other" id="otherAreaCheck">
-                                            <span class="checkbox-custom"></span>
-                                            Other:
-                                            <input type="text" name="otherArea" id="otherAreaText" placeholder="Specify area" class="other-input">
                                         </label>
                                     </div>
                                     <div class="error-message" id="areasError"></div>
@@ -285,24 +279,20 @@
             const submitText = submitBtn.querySelector('.submit-text');
             const submitSpinner = submitBtn.querySelector('.submit-spinner');
 
-            // Other area functionality
-            const otherAreaCheck = document.getElementById('otherAreaCheck');
-            const otherAreaText = document.getElementById('otherAreaText');
+            // Other area functionality - REMOVED since "Other" option was removed
 
-            otherAreaCheck.addEventListener('change', function() {
-                if (this.checked) {
-                    otherAreaText.style.display = 'inline-block';
-                    otherAreaText.focus();
-                    otherAreaText.required = true;
-                } else {
-                    otherAreaText.style.display = 'none';
-                    otherAreaText.value = '';
-                    otherAreaText.required = false;
-                }
+            // Hide other area input initially - REMOVED
+
+            // Add touched class to inputs when user interacts with them
+            const allInputs = form.querySelectorAll('.form-input');
+            allInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    this.classList.add('touched');
+                });
+                input.addEventListener('input', function() {
+                    this.classList.add('touched');
+                });
             });
-
-            // Hide other area input initially
-            otherAreaText.style.display = 'none';
 
             // Form validation functions
             function validateField(field, errorId, customMessage = null) {
@@ -316,9 +306,6 @@
                     if (checkedAreas.length === 0) {
                         isValid = false;
                         message = 'Please select at least one area of interest.';
-                    } else if (otherAreaCheck.checked && !otherAreaText.value.trim()) {
-                        isValid = false;
-                        message = 'Please specify the other area.';
                     }
                 } else if (field.type === 'email') {
                     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -499,11 +486,7 @@
                 // Handle areas (multiple checkboxes)
                 const selectedAreas = [];
                 document.querySelectorAll('input[name="areas"]:checked').forEach(checkbox => {
-                    if (checkbox.value === 'other' && otherAreaText.value.trim()) {
-                        selectedAreas.push(otherAreaText.value.trim());
-                    } else if (checkbox.value !== 'other') {
-                        selectedAreas.push(checkbox.value);
-                    }
+                    selectedAreas.push(checkbox.value);
                 });
                 data.areas = selectedAreas;
 

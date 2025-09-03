@@ -227,7 +227,8 @@ body {
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
-.form-input:invalid {
+/* Only show red borders after user has interacted with the field */
+.form-input.touched:invalid {
     border-color: #e74c3c;
 }
 
