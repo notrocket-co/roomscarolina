@@ -90,12 +90,6 @@
                                             <span class="checkbox-custom"></span>
                                             Fairview
                                         </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="areas" value="other" id="otherAreaCheck">
-                                            <span class="checkbox-custom"></span>
-                                            Other:
-                                            <input type="text" name="otherArea" id="otherAreaText" placeholder="Specify area" class="other-input">
-                                        </label>
                                     </div>
                                     <div class="error-message" id="areasError"></div>
                                 </div>
@@ -285,25 +279,6 @@
             const submitText = submitBtn.querySelector('.submit-text');
             const submitSpinner = submitBtn.querySelector('.submit-spinner');
 
-            // Other area functionality
-            const otherAreaCheck = document.getElementById('otherAreaCheck');
-            const otherAreaText = document.getElementById('otherAreaText');
-
-            otherAreaCheck.addEventListener('change', function() {
-                if (this.checked) {
-                    otherAreaText.style.display = 'inline-block';
-                    otherAreaText.focus();
-                    otherAreaText.required = true;
-                } else {
-                    otherAreaText.style.display = 'none';
-                    otherAreaText.value = '';
-                    otherAreaText.required = false;
-                }
-            });
-
-            // Hide other area input initially
-            otherAreaText.style.display = 'none';
-
             // Form validation functions
             function validateField(field, errorId, customMessage = null) {
                 const errorElement = document.getElementById(errorId);
@@ -316,9 +291,6 @@
                     if (checkedAreas.length === 0) {
                         isValid = false;
                         message = 'Please select at least one area of interest.';
-                    } else if (otherAreaCheck.checked && !otherAreaText.value.trim()) {
-                        isValid = false;
-                        message = 'Please specify the other area.';
                     }
                 } else if (field.type === 'email') {
                     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -509,17 +481,13 @@
                 // Handle areas (multiple checkboxes)
                 const selectedAreas = [];
                 document.querySelectorAll('input[name="areas"]:checked').forEach(checkbox => {
-                    if (checkbox.value === 'other' && otherAreaText.value.trim()) {
-                        selectedAreas.push(otherAreaText.value.trim());
-                    } else if (checkbox.value !== 'other') {
-                        selectedAreas.push(checkbox.value);
-                    }
+                    selectedAreas.push(checkbox.value);
                 });
                 data.areas = selectedAreas;
 
                 // Handle other form fields
                 for (let [key, value] of formData.entries()) {
-                    if (key !== 'areas' && key !== 'otherArea') {
+                    if (key !== 'areas') {
                         data[key] = value;
                     }
                 }
