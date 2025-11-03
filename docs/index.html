@@ -404,9 +404,19 @@
                 return isValid;
             }
 
+            // Mark fields as touched on first interaction
+            form.addEventListener('blur', function(e) {
+                const field = e.target;
+                if (field.classList.contains('form-input') || field.type === 'radio' || field.type === 'checkbox') {
+                    field.classList.add('touched');
+                }
+            }, true);
+
             // Real-time validation
             form.addEventListener('input', function(e) {
                 const field = e.target;
+                field.classList.add('touched');
+                
                 const errorMapping = {
                     'fullName': 'fullNameError',
                     'email': 'emailError',
